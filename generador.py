@@ -18,8 +18,8 @@ class Generador(object):
 
         import math
 
-        cantidad_muestras = (tiempo_final - tiempo_inicial).seconds/\
-        self.frecuencia_muestreo
+        cantidad_muestras = int((tiempo_final - tiempo_inicial).seconds/\
+        self.frecuencia_muestreo)
 
         muestras = range(cantidad_muestras)
         #TODO agregar un ruido blanco a la senal

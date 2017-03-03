@@ -5,6 +5,7 @@ class Detector(object):
         pass
 
     def detectar(self, senal):
-
+        return senal            
+            
         #TODO: Completar
-        pass
+#        pass
