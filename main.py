@@ -4,7 +4,7 @@ import blanco
 import generador
 import datetime
 import detector
-import matplotlib.pyplot as plt
+import blancoCluter
 
 # DISCLAMER!!
 # todo esta en castellano por razones didacticas
@@ -33,22 +33,23 @@ def main():
     rad = radar.Radar(gen, detec)
 
     # parametros para un blanco
-    amplitud_de_frecuencia_del_blanco = amplitud + 1.
+    amplitud_de_frecuencia_del_blanco = amplitud + 0.5
     tiempo_inicial_del_blanco = datetime.datetime(2016, 3, 5, 2)
     tiempo_final_del_blanco = datetime.datetime(2016, 3, 5, 4)
+    
+    amplitud_blanco_cluter = amplitud + 100
     
     #TODO contruir un nuevo blanco
     mi_blanco = blanco.Blanco(amplitud_de_frecuencia_del_blanco, \
                             tiempo_inicial_del_blanco, tiempo_final_del_blanco)
-    mis_blancos = [mi_blanco]
+    mi_blanco_cl = blancoCluter.Blancocluter(amplitud_blanco_cluter, \
+                                             tiempo_inicial, tiempo_final)
+    mis_blancos = [mi_blanco, mi_blanco_cl]
     #TODO contruir un medio
     mi_medio = medio.Medio(mis_blancos)
 
     #TODO construir un radar
-    senal_emitida = gen.generar(tiempo_inicial, tiempo_final)
     senal_salida = rad.detectar(mi_medio, tiempo_inicial, tiempo_final)
-    plt.plot(senal_emitida)
-    plt.plot(senal_salida)
     
 if __name__ == "__main__":
     main()
