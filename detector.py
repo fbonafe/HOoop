@@ -1,11 +1,10 @@
 class Detector(object):
 
     def __init__(self):
-        #TODO: completar con la inicializacion de los parametros del objeto
         pass
-
-    def detectar(self, senal):
-        return senal            
-            
-        #TODO: Completar
-#        pass
+    def detectar(self, senal, senal_generada):
+        if max(senal) > max(senal_generada):
+            print('Se detecto uno o mas blancos!')
+        else:
+            print('No se detecto nada')
+        return senal

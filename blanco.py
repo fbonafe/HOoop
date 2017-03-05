@@ -7,19 +7,32 @@ class Blanco(object):
         self.amplitud = amplitud
         self.tiempo_inicial = tiempo_inicial
         self.tiempo_final = tiempo_final
-        #TODO: completar con la inicializacion de los parametros del objeto
-        pass
 
     def reflejar(self, senal, tiempo_inicial, tiempo_final):
         senal_salida = [0.] * len(senal)
-        dt = (tiempo_final - tiempo_inicial).seconds/len(senal)
-        times = [tiempo_inicial.second + i*dt for i in range(len(senal))]
+        dt = (tiempo_final - tiempo_inicial).seconds / len(senal)
+        si = (self.tiempo_inicial - tiempo_inicial).seconds
+        sf = (self.tiempo_final - tiempo_inicial).seconds
+
+        if (self.tiempo_inicial >= tiempo_inicial):
+            ni = int(si/dt)
+            if (self.tiempo_final <= tiempo_final):
+                nf = int(sf/dt)
+            else: #(self.tiempo_final > tiempo_final):
+                nf = len(senal)
+        else: #(self.tiempo_inicial < tiempo_inicial)
+            ni = 0
+            if (self.tiempo_final >= tiempo_inicial):
+                if (self.tiempo_final <= tiempo_final):
+                    nf = int(sf/dt)
+                else: #(self.tiempo_final > tiempo_final):
+                    nf = len(senal)
+            else:
+                nf = 0
         
-        for i,time in enumerate(times):
-            if time > self.tiempo_inicial.second and \
-            time < self.tiempo_final.second:
-                senal_salida[i] = self.amplitud
-        
+        for i in range(ni, nf):
+            senal_salida[i] = senal[i]*self.amplitud
+            
         return senal_salida
                 
         #TODO ver como se encajan los tiempos del blanco y del intervalo de tiempo

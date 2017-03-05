@@ -10,6 +10,7 @@ class Medio(object):
         """
         Los blancos en el medio reflejan la senal
         """
+        
         senal_reflejada = [0.] * len(una_senal)
         for blanco in self.blancos:
             senal_blanco = blanco.reflejar(una_senal, tiempo_inicial, tiempo_final)
